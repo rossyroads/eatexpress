@@ -1,0 +1,76 @@
+services:
+  pg_eatexpress_db:
+    image: postgres:17.6
+    restart: always
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "eatexpress_db"
+    ports:
+      - 15432:5432
+    networks:
+      - backend
+    volumes:
+      - pg_eatexpress_db:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+
+  app_rabbitmq:
+    image: rabbitmq:3.13.7-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=myuser
+      - RABBITMQ_DEFAULT_PASS=mypassword
+    ports:
+      - "5673:5672" #AMQP
+      - "15673:15672" #MGMT
+    networks:
+      - backend
+    volumes:
+      - app_rabbitmq_data:/var/lib/rabbitmq/
+      - app_rabbitmq_log:/var/log/rabbitmq/
+
+  idp_mysql:
+    image: mysql:9.0.1
+    volumes:
+      - idp_mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloaka
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+    networks:
+      - kc
+
+  idp_keycloak:
+    image: quay.io/keycloak/keycloak:25.0.5
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_LOG_LEVEL=info
+      # - KC_DB=mysql
+      # - KC_DB_URL_HOST=eatexpress-idp_mysql-1
+      # - KC_DB_URL_DATABASE=keycloaka
+      # - KC_DB_USERNAME=keycloak
+      # - KC_DB_PASSWORD=password
+    command: start-dev
+    ports:
+      - "8180:8080"
+    depends_on:
+      - idp_mysql
+    networks:
+      - kc
+
+networks:
+  kc:
+    name: kc-network
+    driver: bridge
+  backend:
+    name: back-network
+    driver: bridge
+
+volumes:
+  pg_eatexpress_db:
+  app_rabbitmq_data:
+  app_rabbitmq_log:
+  idp_mysql:
