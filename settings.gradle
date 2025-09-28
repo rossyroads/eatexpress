@@ -1,6 +1,5 @@
-rootProject.name = 'template'
+rootProject.name = 'eatexpress'
 
 include 'application'
 include 'common'
-include 'boundedContextA'
-include 'boundedContextB'
+include 'restaurant'

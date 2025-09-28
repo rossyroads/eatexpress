@@ -66,3 +66,5 @@ peertutor/
 .material
 .temp
 bin/
+.env
+*.sh

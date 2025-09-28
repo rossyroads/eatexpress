@@ -1,9 +1,11 @@
 server:
   port: ${PORT:8090}
   servlet:
-    context-path: /api
-
+    context-path: /api/v1
 
 spring:
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
+  devtools:
+    restart:
+      additional-paths: ".,../restaurant"
