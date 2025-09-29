@@ -60,7 +60,6 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle
 
-peertutor/
 .devcontainer
 .vscode
 .material
@@ -68,3 +67,6 @@ peertutor/
 bin/
 .env
 *.sh
+.mvn
+target/
+src/main_old/

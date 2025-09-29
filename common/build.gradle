@@ -1,7 +1,0 @@
-plugins {
-    id 'module-config'
-}
-
-bootJar {
-    enabled = false
-}
