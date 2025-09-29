@@ -4,8 +4,27 @@ server:
     context-path: /api/v1
 
 spring:
+  sql:
+    init:
+      mode: always
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    defer-datasource-initialization: true
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:3306}/eatexpress_db
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
   devtools:
     restart:
       additional-paths: ".,../restaurant"
+
+logging:
+  level:
+    be.kdg.eatexpress.invoicing: DEBUG
+    org.springframework.amqp: DEBUG
