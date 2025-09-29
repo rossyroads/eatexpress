@@ -14,7 +14,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class EatExpressApplication {
 
-    private static final Logger log = LoggerFactory.getLogger(EatExpressApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(
+        EatExpressApplication.class
+    );
 
     public static void main(String[] args) {
         SpringApplication.run(EatExpressApplication.class, args);
@@ -22,8 +24,9 @@ public class EatExpressApplication {
 
     @EventListener(ApplicationStartedEvent.class)
     void onApplicationStarted() {
-        ApplicationModules modules = ApplicationModules.of(EatExpressApplication.class);
+        ApplicationModules modules = ApplicationModules.of(
+            EatExpressApplication.class
+        );
         modules.forEach(module -> log.info("\n{}", module));
     }
-
 }

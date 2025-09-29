@@ -1,19 +1,18 @@
 package com.eatexpress.app.restaurant.domain;
 
+import com.eatexpress.app.common.domain.Email;
+import com.eatexpress.app.common.domain.Url;
 import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.eatexpress.app.common.domain.Email;
-import com.eatexpress.app.common.domain.Url;
-
 public class Restaurant {
+
     private RestaurantUUID restaurantUUID;
 
-    public record RestaurantUUID(UUID uuid){
-    }
+    public record RestaurantUUID(UUID uuid) {}
 
     private UUID owner;
     private String name;
@@ -31,10 +30,23 @@ public class Restaurant {
     private OpeningHours openingHours;
     private RestaurantStatus openingStatusOverride;
 
-    public Restaurant(RestaurantUUID restaurantUUID, UUID owner, String name, CuisineType cuisineType,
-            Email contactEmail, Url pictureUrl, String street, Integer street_number, String postalCode, String city,
-            String country, Integer defaultPreparationTimeMinutes, PriceRange priceRange,
-            OpeningHours openingHours, RestaurantStatus openingStatusOverride) {
+    public Restaurant(
+        RestaurantUUID restaurantUUID,
+        UUID owner,
+        String name,
+        CuisineType cuisineType,
+        Email contactEmail,
+        Url pictureUrl,
+        String street,
+        Integer street_number,
+        String postalCode,
+        String city,
+        String country,
+        Integer defaultPreparationTimeMinutes,
+        PriceRange priceRange,
+        OpeningHours openingHours,
+        RestaurantStatus openingStatusOverride
+    ) {
         this.restaurantUUID = restaurantUUID;
         this.owner = owner;
         this.name = name;
@@ -144,7 +156,9 @@ public class Restaurant {
         return defaultPreparationTimeMinutes;
     }
 
-    public void setDefaultPreparationTimeMinutes(Integer defaultPreparationTimeMinutes) {
+    public void setDefaultPreparationTimeMinutes(
+        Integer defaultPreparationTimeMinutes
+    ) {
         this.defaultPreparationTimeMinutes = defaultPreparationTimeMinutes;
     }
 
@@ -164,7 +178,9 @@ public class Restaurant {
         return openingStatusOverride;
     }
 
-    public void setOpeningStatusOverride(RestaurantStatus openingStatusOverride) {
+    public void setOpeningStatusOverride(
+        RestaurantStatus openingStatusOverride
+    ) {
         this.openingStatusOverride = openingStatusOverride;
     }
 }

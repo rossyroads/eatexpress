@@ -1,4 +1,5 @@
 package com.eatexpress.app.restaurant.domain;
+
 public enum PriceRange {
     CHEAP("€", null, 10, "Fast food, bakery dishes"),
     REGULAR("€€", 11, 30, "Comfort food"),
@@ -10,21 +11,38 @@ public enum PriceRange {
     private final Integer maxAveragePrice; // inclusive, null = no upper bound
     private final String example;
 
-    PriceRange(String symbol, Integer minAveragePrice, Integer maxAveragePrice, String example) {
+    PriceRange(
+        String symbol,
+        Integer minAveragePrice,
+        Integer maxAveragePrice,
+        String example
+    ) {
         this.symbol = symbol;
         this.minAveragePrice = minAveragePrice;
         this.maxAveragePrice = maxAveragePrice;
         this.example = example;
     }
 
-    public String getSymbol() { return symbol; }
+    public String getSymbol() {
+        return symbol;
+    }
 
     // description is the enum name (e.g., CHEAP, REGULAR)
-    public String getDescription() { return name(); }
+    public String getDescription() {
+        return name();
+    }
 
-    public Integer getMinAveragePrice() { return minAveragePrice; }
-    public Integer getMaxAveragePrice() { return maxAveragePrice; }
-    public String getExample() { return example; }
+    public Integer getMinAveragePrice() {
+        return minAveragePrice;
+    }
+
+    public Integer getMaxAveragePrice() {
+        return maxAveragePrice;
+    }
+
+    public String getExample() {
+        return example;
+    }
 
     public boolean matches(int price) {
         if (minAveragePrice != null && price < minAveragePrice) return false;

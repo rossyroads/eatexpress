@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "redhat.java",
+        "redhat.vscode-yaml",
+        "visualstudioexptteam.vscodeintel",
+        "esbenp.prettier-vscode",
+        "robinsstudio.prettier-java-formatter",
+        "inferrinizzard.prettier-sql-vscode"
+    ]
+}

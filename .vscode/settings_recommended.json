@@ -1,0 +1,17 @@
+{
+    "java.dependency.packagePresentation": "flat",
+    "java.dependency.syncWithFolderExplorer": false,
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.format.enabled": false,
+    "java.compile.nullAnalysis.mode": "disabled",
+    "java.completion.importOrder": ["#"],
+    "prettier-java-formatter.pathToNode": "/usr/local/share/nvm/versions/node/v24.9.0/bin",
+    "prettier-java-formatter.pathToPrettier": "/workspace/node_modules/prettier",
+    "prettier-java-formatter.pathToPrettierJavaPlugin": "/workspace/node_modules/prettier-plugin-java",
+    "[java]": {
+        "editor.defaultFormatter": "Robinsstudio.prettier-java-formatter"
+    },
+    "[sql]": {
+        "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+    }
+}

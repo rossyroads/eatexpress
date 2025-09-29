@@ -65,7 +65,10 @@ public enum CuisineType {
         if (name == null) return null;
         String normalized = name.trim().toLowerCase();
         for (CuisineType c : values()) {
-            if (c.displayName.toLowerCase().equals(normalized) || c.name().toLowerCase().equals(normalized)) {
+            if (
+                c.displayName.toLowerCase().equals(normalized) ||
+                c.name().toLowerCase().equals(normalized)
+            ) {
                 return c;
             }
         }

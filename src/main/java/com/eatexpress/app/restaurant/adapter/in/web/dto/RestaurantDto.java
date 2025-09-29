@@ -3,6 +3,7 @@ package com.eatexpress.app.restaurant.adapter.in.web.dto;
 import java.util.ArrayList;
 
 public class RestaurantDto {
+
     private String name;
     private String cuisineType;
     private String contactEmail;
@@ -15,9 +16,19 @@ public class RestaurantDto {
     private Integer defaultPreparationTimeMinutes;
     private ArrayList<DailyScheduleDto> openingHours;
 
-    public RestaurantDto(String name, String cuisineType, String contactEmail, String pictureUrl, String street,
-            Integer street_number, String postalCode, String city, String country, Integer defaultPreparationTimeMinutes,
-            ArrayList<DailyScheduleDto> openingHours) {
+    public RestaurantDto(
+        String name,
+        String cuisineType,
+        String contactEmail,
+        String pictureUrl,
+        String street,
+        Integer street_number,
+        String postalCode,
+        String city,
+        String country,
+        Integer defaultPreparationTimeMinutes,
+        ArrayList<DailyScheduleDto> openingHours
+    ) {
         this.name = name;
         this.cuisineType = cuisineType;
         this.contactEmail = contactEmail;
@@ -115,7 +126,9 @@ public class RestaurantDto {
         return defaultPreparationTimeMinutes;
     }
 
-    public void setDefaultPreparationTimeMinutes(Integer defaultPreparationTimeMinutes) {
+    public void setDefaultPreparationTimeMinutes(
+        Integer defaultPreparationTimeMinutes
+    ) {
         this.defaultPreparationTimeMinutes = defaultPreparationTimeMinutes;
     }
 
@@ -126,6 +139,4 @@ public class RestaurantDto {
     public void setOpeningHours(ArrayList<DailyScheduleDto> openingHours) {
         this.openingHours = openingHours;
     }
-    
-    
 }

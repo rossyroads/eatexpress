@@ -7,35 +7,42 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class OpeningHours {
+
     private UUID id;
     private Restaurant restaurant;
     private List<DailySchedule> openingHours;
-    
-    public OpeningHours() {
-    }
+
+    public OpeningHours() {}
 
     public OpeningHours(List<DailySchedule> openingHours) {
         this.openingHours = openingHours;
     }
 
-    public OpeningHours(Restaurant restaurant, List<DailySchedule> openingHours) {
+    public OpeningHours(
+        Restaurant restaurant,
+        List<DailySchedule> openingHours
+    ) {
         this.restaurant = restaurant;
         this.openingHours = openingHours;
     }
 
-    public OpeningHours(UUID id, Restaurant restaurant, List<DailySchedule> openingHours) {
+    public OpeningHours(
+        UUID id,
+        Restaurant restaurant,
+        List<DailySchedule> openingHours
+    ) {
         this.id = id;
         this.restaurant = restaurant;
         this.openingHours = openingHours;
     }
 
     /**
-     * Custom setter that enforces the business invariant: 
+     * Custom setter that enforces the business invariant:
      * the schedule must contain exactly one entry for all 7 days of the week.
      */
     public void setOpeningHours(List<DailySchedule> openingHours) {
         validateCompleteSchedule(openingHours);
-        
+
         // Clear existing, set bidirectionality, and update the list
         this.openingHours.clear();
         for (DailySchedule schedule : openingHours) {
@@ -48,21 +55,27 @@ public class OpeningHours {
      */
     private void validateCompleteSchedule(List<DailySchedule> schedules) {
         if (schedules == null || schedules.size() != 7) {
-            throw new IllegalArgumentException("Restaurant must have exactly 7 daily schedule entries.");
+            throw new IllegalArgumentException(
+                "Restaurant must have exactly 7 daily schedule entries."
+            );
         }
 
-        Set<DayOfWeek> uniqueDays = schedules.stream()
+        Set<DayOfWeek> uniqueDays = schedules
+            .stream()
             .map(DailySchedule::getDayOfWeek)
             .collect(Collectors.toSet());
 
         if (uniqueDays.size() != 7) {
-            throw new IllegalArgumentException("Schedule must include one entry for each of the 7 days of the week, with no duplicates.");
+            throw new IllegalArgumentException(
+                "Schedule must include one entry for each of the 7 days of the week, with no duplicates."
+            );
         }
     }
 
     public Restaurant getRestaurant() {
         return restaurant;
     }
+
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
@@ -78,5 +91,4 @@ public class OpeningHours {
     public void setId(UUID id) {
         this.id = id;
     }
-    
 }
