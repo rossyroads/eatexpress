@@ -7,7 +7,8 @@
         "dev": "bash -c \"set -a && source /workspace/.env && set +a && ./gradlew bootRun\"",
         "clean": "./gradlew clean",
         "format-check": "prettier --check .",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "watch": "./gradlew build -t -xtest"
     },
     "devDependencies": {
         "prettier": "^3.6.2",

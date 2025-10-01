@@ -1,10 +1,6 @@
 package com.eatexpress.app.restaurant.adapter.out.db;
 
-import com.eatexpress.app.restaurant.domain.PriceRange;
-import com.eatexpress.app.restaurant.domain.RestaurantStatus;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -19,7 +15,6 @@ public class RestaurantJpaEntity {
 
     @Id
     @JdbcTypeCode(SqlTypes.CHAR)
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
 
     @JdbcTypeCode(SqlTypes.CHAR)
@@ -35,43 +30,17 @@ public class RestaurantJpaEntity {
     private String city;
     private String country;
     private Integer defaultPreparationTimeMinutes;
-    private PriceRange priceRange;
+    private String priceRange;
 
-    @OneToMany
+    @OneToMany(mappedBy = "restaurant")
     private List<DailyScheduleJpaEntity> openingHours;
 
-    private RestaurantStatus openingStatusOverride;
+    private String openingStatusOverride;
 
     public RestaurantJpaEntity() {}
 
-    public RestaurantJpaEntity(
-        UUID owner,
-        String name,
-        String cuisineType,
-        String contactEmail,
-        String pictureUrl,
-        String street,
-        Integer street_number,
-        String postalCode,
-        String city,
-        String country,
-        Integer defaultPreparationTimeMinutes,
-        PriceRange priceRange,
-        RestaurantStatus openingStatusOverride
-    ) {
-        this.owner = owner;
-        this.name = name;
-        this.cuisineType = cuisineType;
-        this.contactEmail = contactEmail;
-        this.pictureUrl = pictureUrl;
-        this.street = street;
-        this.street_number = street_number;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.country = country;
-        this.defaultPreparationTimeMinutes = defaultPreparationTimeMinutes;
-        this.priceRange = priceRange;
-        this.openingStatusOverride = openingStatusOverride;
+    public RestaurantJpaEntity(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public RestaurantJpaEntity(
@@ -86,9 +55,9 @@ public class RestaurantJpaEntity {
         String city,
         String country,
         Integer defaultPreparationTimeMinutes,
-        PriceRange priceRange,
+        String priceRange,
         List<DailyScheduleJpaEntity> openingHours,
-        RestaurantStatus openingStatusOverride
+        String openingStatusOverride
     ) {
         this.owner = owner;
         this.name = name;
@@ -204,11 +173,11 @@ public class RestaurantJpaEntity {
         this.defaultPreparationTimeMinutes = defaultPreparationTimeMinutes;
     }
 
-    public PriceRange getPriceRange() {
+    public String getPriceRange() {
         return priceRange;
     }
 
-    public void setPriceRange(PriceRange priceRange) {
+    public void setPriceRange(String priceRange) {
         this.priceRange = priceRange;
     }
 
@@ -220,13 +189,11 @@ public class RestaurantJpaEntity {
         this.openingHours = openingHours;
     }
 
-    public RestaurantStatus getOpeningStatusOverride() {
+    public String getOpeningStatusOverride() {
         return openingStatusOverride;
     }
 
-    public void setOpeningStatusOverride(
-        RestaurantStatus openingStatusOverride
-    ) {
+    public void setOpeningStatusOverride(String openingStatusOverride) {
         this.openingStatusOverride = openingStatusOverride;
     }
 }

@@ -1,6 +1,4 @@
 {
-    "java.dependency.packagePresentation": "flat",
-    "java.dependency.syncWithFolderExplorer": false,
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.format.enabled": false,
     "java.compile.nullAnalysis.mode": "disabled",
@@ -9,9 +7,9 @@
     "prettier-java-formatter.pathToPrettier": "/workspace/node_modules/prettier",
     "prettier-java-formatter.pathToPrettierJavaPlugin": "/workspace/node_modules/prettier-plugin-java",
     "[java]": {
-        "editor.defaultFormatter": "Robinsstudio.prettier-java-formatter"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[sql]": {
-        "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }

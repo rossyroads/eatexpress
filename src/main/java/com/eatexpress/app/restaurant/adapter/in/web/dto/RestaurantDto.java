@@ -1,9 +1,11 @@
 package com.eatexpress.app.restaurant.adapter.in.web.dto;
 
+import com.eatexpress.app.restaurant.domain.RestaurantStatus;
 import java.util.ArrayList;
 
 public class RestaurantDto {
 
+    private String uuid;
     private String name;
     private String cuisineType;
     private String contactEmail;
@@ -14,7 +16,9 @@ public class RestaurantDto {
     private String city;
     private String country;
     private Integer defaultPreparationTimeMinutes;
+    private String priceRange;
     private ArrayList<DailyScheduleDto> openingHours;
+    private RestaurantStatus openingStatusOverride;
 
     public RestaurantDto(
         String name,
@@ -74,14 +78,6 @@ public class RestaurantDto {
         this.street = street;
     }
 
-    public Integer getNumber() {
-        return street_number;
-    }
-
-    public void setNumber(Integer street_number) {
-        this.street_number = street_number;
-    }
-
     public String getPostalCode() {
         return postalCode;
     }
@@ -138,5 +134,31 @@ public class RestaurantDto {
 
     public void setOpeningHours(ArrayList<DailyScheduleDto> openingHours) {
         this.openingHours = openingHours;
+    }
+
+    public RestaurantStatus getOpeningStatusOverride() {
+        return openingStatusOverride;
+    }
+
+    public void setOpeningStatusOverride(
+        RestaurantStatus openingStatusOverride
+    ) {
+        this.openingStatusOverride = openingStatusOverride;
+    }
+
+    public String getPriceRange() {
+        return priceRange;
+    }
+
+    public void setPriceRange(String priceRange) {
+        this.priceRange = priceRange;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }

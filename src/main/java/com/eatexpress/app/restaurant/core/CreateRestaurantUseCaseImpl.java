@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateRestaurantUseCaseImpl implements CreateRestaurantUseCase {
 
-    private static final Logger LOGGER = Logger.getLogger(
+    private static final Logger log = Logger.getLogger(
         CreateRestaurantUseCaseImpl.class.getName()
     );
 
@@ -29,10 +29,10 @@ public class CreateRestaurantUseCaseImpl implements CreateRestaurantUseCase {
     public Restaurant createRestaurant(
         CreateRestaurantCommand createRestaurantCommand
     ) {
-        LOGGER.info("Creating restaurant: " + createRestaurantCommand.name());
+        log.info("Creating restaurant: " + createRestaurantCommand.name());
         Restaurant restaurant = new Restaurant(
             new RestaurantUUID(UUID.randomUUID()),
-            UUID.randomUUID(),
+            UUID.randomUUID(), // TODO add owner account
             createRestaurantCommand.name(),
             createRestaurantCommand.cuisineType(),
             createRestaurantCommand.contactEmail(),
@@ -49,7 +49,7 @@ public class CreateRestaurantUseCaseImpl implements CreateRestaurantUseCase {
         );
 
         restaurantCreatePort.createRestaurant(restaurant);
-        LOGGER.info("Created restaurant: " + createRestaurantCommand.name());
+        log.info("Created restaurant: " + createRestaurantCommand.name());
 
         return restaurant;
     }

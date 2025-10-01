@@ -11,6 +11,25 @@ public class DailySchedule {
     private LocalTime timeFrom;
     private LocalTime timeTo;
     private boolean closedAllDay = false;
+    private Restaurant restaurant;
+
+    public DailySchedule() {}
+
+    public DailySchedule(
+        UUID id,
+        DayOfWeek dayOfWeek,
+        LocalTime timeFrom,
+        LocalTime timeTo,
+        boolean closedAllDay,
+        Restaurant restaurant
+    ) {
+        this.id = id;
+        this.dayOfWeek = dayOfWeek;
+        this.timeFrom = timeFrom;
+        this.timeTo = timeTo;
+        this.closedAllDay = closedAllDay;
+        this.restaurant = restaurant;
+    }
 
     public UUID getId() {
         return id;
@@ -50,5 +69,13 @@ public class DailySchedule {
 
     public void setClosedAllDay(boolean closedAllDay) {
         this.closedAllDay = closedAllDay;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

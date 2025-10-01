@@ -2,11 +2,7 @@ package com.eatexpress.app.restaurant.domain;
 
 import com.eatexpress.app.common.domain.Email;
 import com.eatexpress.app.common.domain.Url;
-import java.time.DayOfWeek;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class Restaurant {
 
@@ -24,11 +20,44 @@ public class Restaurant {
     private String postalCode;
     private String city;
     private String country;
-
     private Integer defaultPreparationTimeMinutes;
     private PriceRange priceRange;
     private OpeningHours openingHours;
     private RestaurantStatus openingStatusOverride;
+
+    public Restaurant() {}
+
+    public Restaurant(
+        UUID owner,
+        String name,
+        CuisineType cuisineType,
+        Email contactEmail,
+        Url pictureUrl,
+        String street,
+        Integer street_number,
+        String postalCode,
+        String city,
+        String country,
+        Integer defaultPreparationTimeMinutes,
+        PriceRange priceRange,
+        OpeningHours openingHours,
+        RestaurantStatus openingStatusOverride
+    ) {
+        this.owner = owner;
+        this.name = name;
+        this.cuisineType = cuisineType;
+        this.contactEmail = contactEmail;
+        this.pictureUrl = pictureUrl;
+        this.street = street;
+        this.street_number = street_number;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.country = country;
+        this.defaultPreparationTimeMinutes = defaultPreparationTimeMinutes;
+        this.priceRange = priceRange;
+        this.openingHours = openingHours;
+        this.openingStatusOverride = openingStatusOverride;
+    }
 
     public Restaurant(
         RestaurantUUID restaurantUUID,

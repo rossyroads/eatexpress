@@ -11,18 +11,16 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    // https://mvnrepository.com/artifact/org.springframework.modulith/spring-modulith-core
     implementation("org.springframework.modulith:spring-modulith-core:1.4.3")
-    // https://mvnrepository.com/artifact/org.springframework.modulith/spring-modulith-starter-core
     implementation("org.springframework.modulith:spring-modulith-starter-core:1.4.3")
-    // https://mvnrepository.com/artifact/org.springframework.modulith/spring-modulith-bom
     implementation("org.springframework.modulith:spring-modulith-bom:1.4.3")
+    
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 
     runtimeOnly("org.postgresql:postgresql")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    // https://mvnrepository.com/artifact/org.springframework.modulith/spring-modulith-starter-test
     testImplementation("org.springframework.modulith:spring-modulith-starter-test:1.4.3")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")

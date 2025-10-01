@@ -15,6 +15,7 @@ public class OpeningHours {
     public OpeningHours() {}
 
     public OpeningHours(List<DailySchedule> openingHours) {
+        validateCompleteSchedule(openingHours);
         this.openingHours = openingHours;
     }
 
@@ -22,6 +23,7 @@ public class OpeningHours {
         Restaurant restaurant,
         List<DailySchedule> openingHours
     ) {
+        validateCompleteSchedule(openingHours);
         this.restaurant = restaurant;
         this.openingHours = openingHours;
     }
@@ -31,6 +33,7 @@ public class OpeningHours {
         Restaurant restaurant,
         List<DailySchedule> openingHours
     ) {
+        validateCompleteSchedule(openingHours);
         this.id = id;
         this.restaurant = restaurant;
         this.openingHours = openingHours;
@@ -53,7 +56,9 @@ public class OpeningHours {
     /**
      * Validation logic to ensure the schedule covers exactly 7 unique days.
      */
-    private void validateCompleteSchedule(List<DailySchedule> schedules) {
+    private List<DailySchedule> validateCompleteSchedule(
+        List<DailySchedule> schedules
+    ) {
         if (schedules == null || schedules.size() != 7) {
             throw new IllegalArgumentException(
                 "Restaurant must have exactly 7 daily schedule entries."
@@ -70,6 +75,8 @@ public class OpeningHours {
                 "Schedule must include one entry for each of the 7 days of the week, with no duplicates."
             );
         }
+
+        return schedules;
     }
 
     public Restaurant getRestaurant() {

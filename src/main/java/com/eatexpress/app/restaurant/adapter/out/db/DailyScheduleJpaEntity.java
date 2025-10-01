@@ -4,8 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -20,23 +21,31 @@ public class DailyScheduleJpaEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private DayOfWeek dayOfWeek;
+    private Integer dayOfWeek;
     private LocalTime timeFrom;
     private LocalTime timeTo;
     private boolean closedAllDay;
 
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private RestaurantJpaEntity restaurant;
+
+    public DailyScheduleJpaEntity() {}
+
     public DailyScheduleJpaEntity(
         UUID id,
-        DayOfWeek dayOfWeek,
+        Integer dayOfWeek,
         LocalTime timeFrom,
         LocalTime timeTo,
-        boolean closedAllDay
+        boolean closedAllDay,
+        RestaurantJpaEntity restaurant
     ) {
         this.id = id;
         this.dayOfWeek = dayOfWeek;
         this.timeFrom = timeFrom;
         this.timeTo = timeTo;
         this.closedAllDay = closedAllDay;
+        this.restaurant = restaurant;
     }
 
     public UUID getId() {
@@ -47,11 +56,11 @@ public class DailyScheduleJpaEntity {
         this.id = id;
     }
 
-    public DayOfWeek getDayOfWeek() {
+    public Integer getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+    public void setDayOfWeek(Integer dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 
@@ -77,5 +86,13 @@ public class DailyScheduleJpaEntity {
 
     public void setClosedAllDay(boolean closedAllDay) {
         this.closedAllDay = closedAllDay;
+    }
+
+    public RestaurantJpaEntity getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(RestaurantJpaEntity restaurant) {
+        this.restaurant = restaurant;
     }
 }
