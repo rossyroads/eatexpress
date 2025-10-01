@@ -2,6 +2,7 @@ package com.eatexpress.app.restaurant.domain;
 
 import com.eatexpress.app.common.domain.Email;
 import com.eatexpress.app.common.domain.Url;
+import com.eatexpress.app.common.domain.UserId;
 import java.util.UUID;
 
 public class Restaurant {
@@ -10,7 +11,7 @@ public class Restaurant {
 
     public record RestaurantUUID(UUID uuid) {}
 
-    private UUID owner;
+    private UserId owner;
     private String name;
     private CuisineType cuisineType;
     private Email contactEmail;
@@ -28,7 +29,7 @@ public class Restaurant {
     public Restaurant() {}
 
     public Restaurant(
-        UUID owner,
+        UserId owner,
         String name,
         CuisineType cuisineType,
         Email contactEmail,
@@ -61,7 +62,7 @@ public class Restaurant {
 
     public Restaurant(
         RestaurantUUID restaurantUUID,
-        UUID owner,
+        UserId owner,
         String name,
         CuisineType cuisineType,
         Email contactEmail,
@@ -97,7 +98,7 @@ public class Restaurant {
         return restaurantUUID;
     }
 
-    public UUID getOwner() {
+    public UserId getOwner() {
         return owner;
     }
 
@@ -133,7 +134,7 @@ public class Restaurant {
         this.restaurantUUID = restaurantUUID;
     }
 
-    public void setOwner(UUID owner) {
+    public void setOwner(UserId owner) {
         this.owner = owner;
     }
 

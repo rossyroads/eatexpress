@@ -2,6 +2,7 @@ package com.eatexpress.app.restaurant.adapter.in.web;
 
 import com.eatexpress.app.common.domain.Email;
 import com.eatexpress.app.common.domain.Url;
+import com.eatexpress.app.common.domain.UserId;
 import com.eatexpress.app.restaurant.adapter.in.web.dto.DailyScheduleDtoMapper;
 import com.eatexpress.app.restaurant.adapter.in.web.dto.RestaurantDto;
 import com.eatexpress.app.restaurant.adapter.in.web.dto.RestaurantDtoMapper;
@@ -14,6 +15,8 @@ import com.eatexpress.app.restaurant.port.in.CreateRestaurantUseCase;
 import java.util.logging.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,13 +47,20 @@ public class RestaurantController {
 
     @PostMapping("/create")
     public ResponseEntity<RestaurantDto> createRestaurant(
+        @AuthenticationPrincipal Jwt jwt,
         @RequestBody RestaurantDto restaurantDto
     ) {
         log.info(
-            "Received request to create restaurant: " + restaurantDto.getName()
+            "Received request to create restaurant: " +
+                restaurantDto.getName() +
+                " from user: " +
+                jwt.getClaims().get("email") +
+                " with id: " +
+                jwt.getSubject()
         );
         CreateRestaurantCommand createRestaurantCommand =
             new CreateRestaurantCommand(
+                new UserId(jwt.getSubject()),
                 restaurantDto.getName(),
                 CuisineType.fromDisplayName(restaurantDto.getCuisineType()),
                 new Email(restaurantDto.getContactEmail()),

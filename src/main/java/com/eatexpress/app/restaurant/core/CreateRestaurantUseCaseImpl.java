@@ -32,7 +32,7 @@ public class CreateRestaurantUseCaseImpl implements CreateRestaurantUseCase {
         log.info("Creating restaurant: " + createRestaurantCommand.name());
         Restaurant restaurant = new Restaurant(
             new RestaurantUUID(UUID.randomUUID()),
-            UUID.randomUUID(), // TODO add owner account
+            createRestaurantCommand.owner(),
             createRestaurantCommand.name(),
             createRestaurantCommand.cuisineType(),
             createRestaurantCommand.contactEmail(),

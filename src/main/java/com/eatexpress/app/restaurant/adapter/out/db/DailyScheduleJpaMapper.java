@@ -2,10 +2,12 @@ package com.eatexpress.app.restaurant.adapter.out.db;
 
 import com.eatexpress.app.common.domain.Email;
 import com.eatexpress.app.common.domain.Url;
+import com.eatexpress.app.common.domain.UserId;
 import com.eatexpress.app.restaurant.domain.DailySchedule;
 import com.eatexpress.app.restaurant.domain.OpeningHours;
 import java.time.DayOfWeek;
 import java.util.List;
+import java.util.UUID;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
@@ -52,5 +54,13 @@ public interface DailyScheduleJpaMapper {
 
     default OpeningHours map(List<DailySchedule> dailySchedules) {
         return new OpeningHours(dailySchedules);
+    }
+
+    default UUID map(UserId value) {
+        return value.uuid();
+    }
+
+    default UserId mapUserId(UUID value) {
+        return new UserId(value);
     }
 }
