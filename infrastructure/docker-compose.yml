@@ -1,11 +1,12 @@
+name: eatexpress
 services:
   pg_eatexpress_db:
     image: postgres:17.6
     restart: always
     environment:
-      POSTGRES_USER: "user"
-      POSTGRES_PASSWORD: "password"
-      POSTGRES_DB: "eatexpress_db"
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: eatexpress_db
     ports:
       - 15432:5432
     networks:
@@ -17,8 +18,8 @@ services:
   app_rabbitmq:
     image: rabbitmq:3.13.7-management-alpine
     environment:
-      - RABBITMQ_DEFAULT_USER=myuser
-      - RABBITMQ_DEFAULT_PASS=mypassword
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
     ports:
       - "5673:5672" #AMQP
       - "15673:15672" #MGMT
@@ -34,7 +35,7 @@ services:
       - idp_mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: keycloaka
+      MYSQL_DATABASE: keycloak
       MYSQL_USER: keycloak
       MYSQL_PASSWORD: password
     ports:
@@ -43,16 +44,18 @@ services:
       - kc
 
   idp_keycloak:
-    image: quay.io/keycloak/keycloak:25.0.5
+    image: quay.io/keycloak/keycloak:26.4.0
     environment:
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin
-      - KC_LOG_LEVEL=info
-      # - KC_DB=mysql
-      # - KC_DB_URL_HOST=eatexpress-idp_mysql-1
-      # - KC_DB_URL_DATABASE=keycloaka
-      # - KC_DB_USERNAME=keycloak
-      # - KC_DB_PASSWORD=password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_LOG_LEVEL: info
+      KC_DB: mysql
+      KC_DB_URL_HOST: eatexpress-idp_mysql-1
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: password
+      # Set the hostname for browser access
+      KC_HOSTNAME: localhost
     command: start-dev
     ports:
       - "8180:8080"

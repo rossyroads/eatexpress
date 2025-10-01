@@ -26,6 +26,12 @@ spring:
         driver-class-name: org.postgresql.Driver
     config:
         additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    jwk-set-uri: ${KEYCLOAK_URL}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/certs
+                    issuer-uri: ${KEYCLOAK_URL}/realms/${KEYCLOAK_REALM}
 
 logging:
     level:

@@ -8,7 +8,8 @@
         "clean": "./gradlew clean",
         "format-check": "prettier --check .",
         "format": "prettier --write .",
-        "watch": "./gradlew build -t -xtest"
+        "watch": "./gradlew build -t -xtest",
+        "push": "git push origin main && git push origin2 main"
     },
     "devDependencies": {
         "prettier": "^3.6.2",
