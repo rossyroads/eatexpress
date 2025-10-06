@@ -12,8 +12,8 @@ spring:
     jpa:
         open-in-view: false
         hibernate:
-            # ddl-auto: validate
-            ddl-auto: create
+            ddl-auto: validate
+            # ddl-auto: create
         show-sql: true
         defer-datasource-initialization: true
         properties:
@@ -32,6 +32,11 @@ spring:
                 jwt:
                     jwk-set-uri: ${KEYCLOAK_URL}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/certs
                     issuer-uri: ${KEYCLOAK_URL}/realms/${KEYCLOAK_REALM}
+    rabbitmq:
+        host: ${RM_HOST:localhost}
+        port: ${RM_PORT:5672}
+        username: ${RM_USER}
+        password: ${RM_PASSWORD}
 
 logging:
     level:

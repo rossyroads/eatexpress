@@ -73,3 +73,4 @@ bin/
 target/
 src/main_old/
 node_modules/
+infrastructure/test
