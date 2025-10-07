@@ -23,6 +23,8 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-amqp")
 
+    implementation("jakarta.validation:jakarta.validation-api:3.1.1")
+
     runtimeOnly("org.postgresql:postgresql")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
