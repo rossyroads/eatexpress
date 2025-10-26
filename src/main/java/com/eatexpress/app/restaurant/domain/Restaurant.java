@@ -213,4 +213,8 @@ public class Restaurant {
     ) {
         this.openingStatusOverride = openingStatusOverride;
     }
+
+    public void setOpeningHours(OpeningHours openingHours) {
+        this.openingHours = openingHours;
+    }
 }

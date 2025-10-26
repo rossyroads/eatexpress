@@ -1,17 +1,16 @@
 package com.eatexpress.app.restaurant.adapter.in.web.dto;
 
-import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class DailyScheduleDto {
 
-    private DayOfWeek dayOfWeek;
+    private String dayOfWeek;
     private LocalTime timeFrom;
     private LocalTime timeTo;
     private boolean closedAllDay;
 
     public DailyScheduleDto(
-        DayOfWeek dayOfWeek,
+        String dayOfWeek,
         LocalTime timeFrom,
         LocalTime timeTo,
         boolean closedAllDay
@@ -22,11 +21,11 @@ public class DailyScheduleDto {
         this.closedAllDay = closedAllDay;
     }
 
-    public DayOfWeek getDayOfWeek() {
+    public String getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+    public void setDayOfWeek(String dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 

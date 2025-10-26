@@ -9,11 +9,14 @@ import java.time.DayOfWeek;
 import java.util.List;
 import java.util.UUID;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface DailyScheduleJpaMapper {
     DailyScheduleJpaEntity map(DailySchedule dailySchedule);
+
+    @Mapping(target = "restaurant", ignore = true)
     DailySchedule map(DailyScheduleJpaEntity dailyScheduleJpaEntity);
 
     List<DailySchedule> mapToEntityList(
