@@ -22,7 +22,7 @@ public class CreateDishUseCaseImpl implements CreateDishUseCase {
             createDishCommand.getRestaurantId(),
             createDishCommand.getInitialDetails(),
             null,
-            DishStatus.UNPUBLISHED,
+            DishStatus.PUBLISHED,
             createDishCommand.isOutOfStock(),
             null,
             0

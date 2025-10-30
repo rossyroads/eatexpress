@@ -9,7 +9,7 @@ public class DishDto {
     private String uuid;
     private String restaurant;
     private String liveStatus;
-    private boolean isOutOfStock = false;
+    private boolean isOutOfStock;
     private LocalDateTime scheduledTime = null;
     private long version;
 
@@ -77,11 +77,11 @@ public class DishDto {
         this.liveStatus = liveStatus;
     }
 
-    public boolean isOutOfStock() {
+    public boolean getIsOutOfStock() {
         return isOutOfStock;
     }
 
-    public void setOutOfStock(boolean isOutOfStock) {
+    public void setIsOutOfStock(boolean isOutOfStock) {
         this.isOutOfStock = isOutOfStock;
     }
 

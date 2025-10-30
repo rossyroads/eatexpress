@@ -68,7 +68,7 @@ public class DishController {
                 foodTags,
                 new Url(dishDto.getPictureUrl())
             ),
-            dishDto.isOutOfStock()
+            dishDto.getIsOutOfStock()
         );
 
         log.info(objectMapper.writeValueAsString(command));

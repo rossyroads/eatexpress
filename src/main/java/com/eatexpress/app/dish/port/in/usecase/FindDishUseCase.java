@@ -1,12 +1,9 @@
-package com.eatexpress.app.dish.port.out;
+package com.eatexpress.app.dish.port.in.usecase;
 
 import com.eatexpress.app.dish.domain.DishAggregate;
-import com.eatexpress.app.dish.domain.DishAggregate.DishUUID;
 import com.eatexpress.app.dish.domain.DishAggregate.RestaurantUUID;
 import java.util.List;
 
-public interface DishPort {
-    void save(DishAggregate dishAggregate);
-    DishAggregate loadById(DishUUID uuid);
+public interface FindDishUseCase {
     List<DishAggregate> findAllByRestaurant(RestaurantUUID restaurantUUID);
 }
