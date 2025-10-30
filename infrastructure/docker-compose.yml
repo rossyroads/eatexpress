@@ -62,6 +62,18 @@ services:
     networks:
       - kc
 
+  delivery_service:
+    image: ghcr.io/material/2025-2026/delivery-service
+    environment:
+      SPRING_PROFILES_ACTIVE: "docker"
+      # SPRING_RABBITMQ_HOST: 'app_rabbitmq'
+      SPRING_RABBITMQ_HOST: "eatexpress-app_rabbitmq-1"
+    # pull_policy: "always"
+    ports:
+      - "8095:8095"
+    networks:
+      - backend
+
 networks:
   kc:
     name: kc-network
