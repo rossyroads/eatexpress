@@ -63,15 +63,16 @@ public enum CuisineType {
 
     public static CuisineType fromDisplayName(String name) {
         if (name == null) return null;
-        String normalized = name.trim().toLowerCase();
+        // String normalized = name.trim().toLowerCase();
         for (CuisineType c : values()) {
             if (
-                c.displayName.toLowerCase().equals(normalized) ||
-                c.name().toLowerCase().equals(normalized)
-            ) {
+                c.displayName.equals(name) // ||
+            ) // c.name().toLowerCase().equals(normalized)
+            {
                 return c;
             }
         }
+        System.out.println("Didn't find cuisine type: " + name);
         throw new IllegalArgumentException("Unknown CuisineType");
     }
 }

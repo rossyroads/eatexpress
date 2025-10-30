@@ -1,5 +1,9 @@
 package com.eatexpress.app.restaurant.core;
 
+import com.eatexpress.app.common.domain.Address;
+import com.eatexpress.app.common.domain.GeocodePlace;
+import com.eatexpress.app.common.exceptions.AddressUnknownException;
+import com.eatexpress.app.common.service.GeocodeService;
 import com.eatexpress.app.restaurant.domain.PriceRange;
 import com.eatexpress.app.restaurant.domain.Restaurant;
 import com.eatexpress.app.restaurant.domain.Restaurant.RestaurantUUID;
@@ -9,8 +13,11 @@ import com.eatexpress.app.restaurant.port.in.CreateRestaurantCommand;
 import com.eatexpress.app.restaurant.port.in.CreateRestaurantUseCase;
 import com.eatexpress.app.restaurant.port.out.RestaurantCreatePort;
 import com.eatexpress.app.restaurant.port.out.RestaurantFindPort;
+import java.net.MalformedURLException;
 import java.util.UUID;
 import java.util.logging.Logger;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,15 +28,17 @@ public class CreateRestaurantUseCaseImpl implements CreateRestaurantUseCase {
     );
 
     private final RestaurantCreatePort restaurantCreatePort;
-
     private final RestaurantFindPort restaurantFindPort;
+    private final GeocodeService geocodeService;
 
     public CreateRestaurantUseCaseImpl(
         RestaurantCreatePort restaurantCreatePort,
-        RestaurantFindPort restaurantFindPort
+        RestaurantFindPort restaurantFindPort,
+        GeocodeService geocodeService
     ) {
         this.restaurantCreatePort = restaurantCreatePort;
         this.restaurantFindPort = restaurantFindPort;
+        this.geocodeService = geocodeService;
     }
 
     public Restaurant createRestaurant(
@@ -43,6 +52,26 @@ public class CreateRestaurantUseCaseImpl implements CreateRestaurantUseCase {
             throw new RestaurantAlreadyExistsException();
         }
         log.info("Creating restaurant: " + createRestaurantCommand.name());
+
+        try {
+            GeocodePlace[] geocodeAddresses =
+                geocodeService.getCoordinatesByAddress(
+                    createRestaurantCommand.address()
+                );
+            if (
+                geocodeAddresses.length == 0
+            ) throw new AddressUnknownException();
+            createRestaurantCommand
+                .address()
+                .setLatitude(geocodeAddresses[0].getLat());
+            createRestaurantCommand
+                .address()
+                .setLongitude(geocodeAddresses[0].getLon());
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         Restaurant restaurant = new Restaurant(
             new RestaurantUUID(UUID.randomUUID()),
             createRestaurantCommand.owner(),
@@ -50,11 +79,7 @@ public class CreateRestaurantUseCaseImpl implements CreateRestaurantUseCase {
             createRestaurantCommand.cuisineType(),
             createRestaurantCommand.contactEmail(),
             createRestaurantCommand.pictureUrl(),
-            createRestaurantCommand.street(),
-            createRestaurantCommand.street_number(),
-            createRestaurantCommand.postalCode(),
-            createRestaurantCommand.city(),
-            createRestaurantCommand.country(),
+            createRestaurantCommand.address(),
             createRestaurantCommand.defaultPreparationTimeMinutes(),
             PriceRange.REGULAR,
             createRestaurantCommand.openingHours(),

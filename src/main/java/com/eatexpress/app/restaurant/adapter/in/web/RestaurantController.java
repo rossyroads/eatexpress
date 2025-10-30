@@ -1,5 +1,6 @@
 package com.eatexpress.app.restaurant.adapter.in.web;
 
+import com.eatexpress.app.common.domain.Address;
 import com.eatexpress.app.common.domain.Email;
 import com.eatexpress.app.common.domain.Url;
 import com.eatexpress.app.common.domain.UserId;
@@ -60,11 +61,14 @@ public class RestaurantController {
         log.info(
             "Received request to create restaurant: " +
                 restaurantDto.getName() +
-                " from user: " +
-                jwt.getClaims().get("email") +
-                " with id: " +
-                jwt.getSubject()
+                " with cuisine type: " +
+                restaurantDto.getCuisineType()
         );
+
+        Address address = restaurantDtoMapper
+            .fromDto(restaurantDto)
+            .getAddress();
+
         CreateRestaurantCommand createRestaurantCommand =
             new CreateRestaurantCommand(
                 new UserId(jwt.getSubject()),
@@ -72,11 +76,7 @@ public class RestaurantController {
                 CuisineType.fromDisplayName(restaurantDto.getCuisineType()),
                 new Email(restaurantDto.getContactEmail()),
                 new Url(restaurantDto.getPictureUrl()),
-                restaurantDto.getStreet(),
-                restaurantDto.getStreet_number(),
-                restaurantDto.getPostalCode(),
-                restaurantDto.getCity(),
-                restaurantDto.getCountry(),
+                address,
                 restaurantDto.getDefaultPreparationTimeMinutes(),
                 new OpeningHours(
                     dailyScheduleDtoMapper.mapToEntityList(
@@ -84,7 +84,7 @@ public class RestaurantController {
                     )
                 )
             );
-
+        log.info("Created command: " + createRestaurantCommand);
         Restaurant newRestaurant = createRestaurantUseCase.createRestaurant(
             createRestaurantCommand
         );

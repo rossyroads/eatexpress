@@ -1,6 +1,6 @@
 package com.eatexpress.app.restaurant.adapter.in.web.dto;
 
-import com.eatexpress.app.restaurant.domain.RestaurantStatus;
+import com.eatexpress.app.common.domain.Address;
 import java.util.ArrayList;
 
 public class RestaurantDto {
@@ -10,26 +10,18 @@ public class RestaurantDto {
     private String cuisineType;
     private String contactEmail;
     private String pictureUrl;
-    private String street;
-    private Integer street_number;
-    private String postalCode;
-    private String city;
-    private String country;
+    private Address address;
     private Integer defaultPreparationTimeMinutes;
     private String priceRange;
     private ArrayList<DailyScheduleDto> openingHours;
-    private RestaurantStatus openingStatusOverride;
+    private String openingStatusOverride;
 
     public RestaurantDto(
         String name,
         String cuisineType,
         String contactEmail,
         String pictureUrl,
-        String street,
-        Integer street_number,
-        String postalCode,
-        String city,
-        String country,
+        Address address,
         Integer defaultPreparationTimeMinutes,
         ArrayList<DailyScheduleDto> openingHours
     ) {
@@ -37,11 +29,7 @@ public class RestaurantDto {
         this.cuisineType = cuisineType;
         this.contactEmail = contactEmail;
         this.pictureUrl = pictureUrl;
-        this.street = street;
-        this.street_number = street_number;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.country = country;
+        this.address = address;
         this.defaultPreparationTimeMinutes = defaultPreparationTimeMinutes;
         this.openingHours = openingHours;
     }
@@ -70,52 +58,12 @@ public class RestaurantDto {
         this.pictureUrl = pictureUrl;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getStreet_number() {
-        return street_number;
-    }
-
-    public void setStreet_number(Integer street_number) {
-        this.street_number = street_number;
     }
 
     public Integer getDefaultPreparationTimeMinutes() {
@@ -136,13 +84,11 @@ public class RestaurantDto {
         this.openingHours = openingHours;
     }
 
-    public RestaurantStatus getOpeningStatusOverride() {
+    public String getOpeningStatusOverride() {
         return openingStatusOverride;
     }
 
-    public void setOpeningStatusOverride(
-        RestaurantStatus openingStatusOverride
-    ) {
+    public void setOpeningStatusOverride(String openingStatusOverride) {
         this.openingStatusOverride = openingStatusOverride;
     }
 
@@ -160,5 +106,13 @@ public class RestaurantDto {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

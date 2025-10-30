@@ -1,5 +1,6 @@
 package com.eatexpress.app.restaurant.domain;
 
+import com.eatexpress.app.common.domain.Address;
 import com.eatexpress.app.common.domain.Email;
 import com.eatexpress.app.common.domain.Url;
 import com.eatexpress.app.common.domain.UserId;
@@ -16,11 +17,7 @@ public class Restaurant {
     private CuisineType cuisineType;
     private Email contactEmail;
     private Url pictureUrl;
-    private String street;
-    private Integer street_number;
-    private String postalCode;
-    private String city;
-    private String country;
+    private Address address;
     private Integer defaultPreparationTimeMinutes;
     private PriceRange priceRange;
     private OpeningHours openingHours;
@@ -34,11 +31,7 @@ public class Restaurant {
         CuisineType cuisineType,
         Email contactEmail,
         Url pictureUrl,
-        String street,
-        Integer street_number,
-        String postalCode,
-        String city,
-        String country,
+        Address address,
         Integer defaultPreparationTimeMinutes,
         PriceRange priceRange,
         OpeningHours openingHours,
@@ -49,11 +42,7 @@ public class Restaurant {
         this.cuisineType = cuisineType;
         this.contactEmail = contactEmail;
         this.pictureUrl = pictureUrl;
-        this.street = street;
-        this.street_number = street_number;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.country = country;
+        this.address = address;
         this.defaultPreparationTimeMinutes = defaultPreparationTimeMinutes;
         this.priceRange = priceRange;
         this.openingHours = openingHours;
@@ -67,11 +56,7 @@ public class Restaurant {
         CuisineType cuisineType,
         Email contactEmail,
         Url pictureUrl,
-        String street,
-        Integer street_number,
-        String postalCode,
-        String city,
-        String country,
+        Address address,
         Integer defaultPreparationTimeMinutes,
         PriceRange priceRange,
         OpeningHours openingHours,
@@ -83,11 +68,7 @@ public class Restaurant {
         this.cuisineType = cuisineType;
         this.contactEmail = contactEmail;
         this.pictureUrl = pictureUrl;
-        this.street = street;
-        this.street_number = street_number;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.country = country;
+        this.address = address;
         this.defaultPreparationTimeMinutes = defaultPreparationTimeMinutes;
         this.priceRange = priceRange;
         this.openingHours = openingHours;
@@ -108,26 +89,6 @@ public class Restaurant {
 
     public Url getPictureUrl() {
         return pictureUrl;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public Integer getStreet_number() {
-        return street_number;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     public void setRestaurantUUID(RestaurantUUID restaurantUUID) {
@@ -152,26 +113,6 @@ public class Restaurant {
 
     public void setPictureUrl(Url pictureUrl) {
         this.pictureUrl = pictureUrl;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setStreet_number(Integer number) {
-        this.street_number = number;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public String getName() {
@@ -216,5 +157,13 @@ public class Restaurant {
 
     public void setOpeningHours(OpeningHours openingHours) {
         this.openingHours = openingHours;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

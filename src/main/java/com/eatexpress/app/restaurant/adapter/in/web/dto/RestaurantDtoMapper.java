@@ -2,6 +2,7 @@ package com.eatexpress.app.restaurant.adapter.in.web.dto;
 
 import com.eatexpress.app.common.domain.Email;
 import com.eatexpress.app.common.domain.Url;
+import com.eatexpress.app.restaurant.domain.CuisineType;
 import com.eatexpress.app.restaurant.domain.DailySchedule;
 import com.eatexpress.app.restaurant.domain.OpeningHours;
 import com.eatexpress.app.restaurant.domain.Restaurant;
@@ -18,14 +19,14 @@ import org.mapstruct.MappingConstants;
     uses = { DailyScheduleDtoMapper.class }
 )
 public interface RestaurantDtoMapper {
-    // @Mapping(target = "uuid", source = "restaurantUUID")
+    @Mapping(target = "uuid", source = "restaurantUUID")
     RestaurantDto toDto(Restaurant restaurant);
 
-    // @InheritInverseConfiguration
+    @InheritInverseConfiguration
     Restaurant fromDto(RestaurantDto restaurantDto);
 
-    default UUID map(RestaurantUUID value) {
-        return value.uuid();
+    default String map(RestaurantUUID value) {
+        return value.uuid().toString();
     }
 
     default RestaurantUUID map(UUID value) {
@@ -54,5 +55,13 @@ public interface RestaurantDtoMapper {
 
     default OpeningHours map(List<DailySchedule> dailySchedules) {
         return new OpeningHours(dailySchedules);
+    }
+
+    default CuisineType map(String value) {
+        // if (CuisineType.valueOf(value) != null) {
+        //     return CuisineType.valueOf(value);
+        // } else {
+        return CuisineType.fromDisplayName(value);
+        // }
     }
 }

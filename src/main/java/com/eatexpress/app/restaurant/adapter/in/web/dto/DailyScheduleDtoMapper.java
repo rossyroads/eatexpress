@@ -23,6 +23,7 @@ public interface DailyScheduleDtoMapper {
     );
 
     default String dayOfWeek(DayOfWeek dayOfWeek) {
-        return dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        // return dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        return String.valueOf(dayOfWeek.getValue());
     }
 }

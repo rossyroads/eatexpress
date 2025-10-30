@@ -2,6 +2,7 @@ package com.eatexpress.app.restaurant.port.in;
 
 import static java.util.Objects.requireNonNull;
 
+import com.eatexpress.app.common.domain.Address;
 import com.eatexpress.app.common.domain.Email;
 import com.eatexpress.app.common.domain.Url;
 import com.eatexpress.app.common.domain.UserId;
@@ -14,11 +15,7 @@ public record CreateRestaurantCommand(
     CuisineType cuisineType,
     Email contactEmail,
     Url pictureUrl,
-    String street,
-    Integer street_number,
-    String postalCode,
-    String city,
-    String country,
+    Address address,
     Integer defaultPreparationTimeMinutes,
     OpeningHours openingHours
 ) {

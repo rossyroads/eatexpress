@@ -1,8 +1,11 @@
 package com.eatexpress.app.restaurant.adapter.out.db;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.List;
 import java.util.UUID;
@@ -24,13 +27,12 @@ public class RestaurantJpaEntity {
     private String cuisineType;
     private String contactEmail;
     private String pictureUrl;
-    private String street;
-    private Integer street_number;
-    private String postalCode;
-    private String city;
-    private String country;
     private Integer defaultPreparationTimeMinutes;
     private String priceRange;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "address_id")
+    private RestaurantAddressJpaEntity address;
 
     @OneToMany(mappedBy = "restaurant")
     private List<DailyScheduleJpaEntity> openingHours;
@@ -49,11 +51,7 @@ public class RestaurantJpaEntity {
         String cuisineType,
         String contactEmail,
         String pictureUrl,
-        String street,
-        Integer street_number,
-        String postalCode,
-        String city,
-        String country,
+        RestaurantAddressJpaEntity addressJpaEntity,
         Integer defaultPreparationTimeMinutes,
         String priceRange,
         List<DailyScheduleJpaEntity> openingHours,
@@ -64,11 +62,7 @@ public class RestaurantJpaEntity {
         this.cuisineType = cuisineType;
         this.contactEmail = contactEmail;
         this.pictureUrl = pictureUrl;
-        this.street = street;
-        this.street_number = street_number;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.country = country;
+        this.address = addressJpaEntity;
         this.defaultPreparationTimeMinutes = defaultPreparationTimeMinutes;
         this.priceRange = priceRange;
         this.openingHours = openingHours;
@@ -123,46 +117,6 @@ public class RestaurantJpaEntity {
         this.pictureUrl = pictureUrl;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public Integer getStreet_number() {
-        return street_number;
-    }
-
-    public void setStreet_number(Integer street_number) {
-        this.street_number = street_number;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public Integer getDefaultPreparationTimeMinutes() {
         return defaultPreparationTimeMinutes;
     }
@@ -195,5 +149,13 @@ public class RestaurantJpaEntity {
 
     public void setOpeningStatusOverride(String openingStatusOverride) {
         this.openingStatusOverride = openingStatusOverride;
+    }
+
+    public RestaurantAddressJpaEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(RestaurantAddressJpaEntity address) {
+        this.address = address;
     }
 }
