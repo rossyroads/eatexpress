@@ -4,6 +4,7 @@ import com.eatexpress.app.dish.domain.DishAggregate;
 import com.eatexpress.app.dish.domain.DishStatus;
 import com.eatexpress.app.dish.port.in.command.StatusSetDishCommand;
 import com.eatexpress.app.dish.port.in.usecase.StatusSetDishUseCase;
+import com.eatexpress.app.dish.port.out.CreateDishPort;
 import com.eatexpress.app.dish.port.out.DishPort;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,14 @@ public class StatusSetDishUseCaseImpl implements StatusSetDishUseCase {
         StatusSetDishUseCaseImpl.class.getName()
     );
 
+    private final CreateDishPort createDishPort;
     private final DishPort dishPort;
 
-    public StatusSetDishUseCaseImpl(DishPort dishPort) {
+    public StatusSetDishUseCaseImpl(
+        CreateDishPort createDishPort,
+        DishPort dishPort
+    ) {
+        this.createDishPort = createDishPort;
         this.dishPort = dishPort;
     }
 
@@ -38,13 +44,13 @@ public class StatusSetDishUseCaseImpl implements StatusSetDishUseCase {
         log.info("Publishing..");
         dishAggregate.setLiveStatus(DishStatus.PUBLISHED);
         dishAggregate.setScheduledTime(null);
-        dishPort.save(dishAggregate);
+        createDishPort.save(dishAggregate);
     }
 
     public void toUnpublish(DishAggregate dishAggregate) {
         log.info("Unpublishing..");
         dishAggregate.setLiveStatus(DishStatus.UNPUBLISHED);
         dishAggregate.setScheduledTime(null);
-        dishPort.save(dishAggregate);
+        createDishPort.save(dishAggregate);
     }
 }

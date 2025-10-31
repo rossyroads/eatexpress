@@ -3,20 +3,31 @@ package com.eatexpress.app.dish.core;
 import com.eatexpress.app.dish.domain.DishAggregate;
 import com.eatexpress.app.dish.domain.DishStatus;
 import com.eatexpress.app.dish.port.in.command.CreateDishCommand;
+import com.eatexpress.app.dish.port.in.usecase.CalculateRestaurantAveragePriceUseCase;
 import com.eatexpress.app.dish.port.in.usecase.CreateDishUseCase;
-import com.eatexpress.app.dish.port.out.DishPort;
+import com.eatexpress.app.dish.port.out.CreateDishPort;
+import com.eatexpress.app.dish.port.out.UpdateAveragePricePort;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateDishUseCaseImpl implements CreateDishUseCase {
 
-    private final DishPort dishPort;
+    private final CreateDishPort createDishPort;
+    private final UpdateAveragePricePort updateAveragePricePort;
+    private final CalculateRestaurantAveragePriceUseCase calculateRestaurantAveragePriceUseCase;
 
-    public CreateDishUseCaseImpl(DishPort dishPort) {
-        this.dishPort = dishPort;
+    public CreateDishUseCaseImpl(
+        CreateDishPort dishPort,
+        UpdateAveragePricePort updateAveragePricePort,
+        CalculateRestaurantAveragePriceUseCase calculateRestaurantAveragePriceUseCase
+    ) {
+        this.createDishPort = dishPort;
+        this.updateAveragePricePort = updateAveragePricePort;
+        this.calculateRestaurantAveragePriceUseCase =
+            calculateRestaurantAveragePriceUseCase;
     }
 
-    public void handle(CreateDishCommand createDishCommand) {
+    public DishAggregate handle(CreateDishCommand createDishCommand) {
         DishAggregate dishAggregate = new DishAggregate(
             createDishCommand.getDishId(),
             createDishCommand.getRestaurantId(),
@@ -27,6 +38,14 @@ public class CreateDishUseCaseImpl implements CreateDishUseCase {
             null,
             0
         );
-        dishPort.save(dishAggregate);
+        DishAggregate dishAggregateCreated = createDishPort.save(dishAggregate);
+
+        updateAveragePricePort.update(
+            createDishCommand.getRestaurantId(),
+            calculateRestaurantAveragePriceUseCase.calculate(
+                createDishCommand.getRestaurantId()
+            )
+        );
+        return dishAggregateCreated;
     }
 }

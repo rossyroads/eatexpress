@@ -9,13 +9,14 @@ import java.util.UUID;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DBAdapter implements RestaurantCreatePort, RestaurantFindPort {
+public class RestaurantDBAdapter
+    implements RestaurantCreatePort, RestaurantFindPort {
 
     private final RestaurantRepository restaurantRepository;
     private final RestaurantJpaMapper restaurantJpaMapper;
     private final DailyScheduleRepository dailyScheduleRepository;
 
-    public DBAdapter(
+    public RestaurantDBAdapter(
         RestaurantRepository restaurantRepository,
         RestaurantJpaMapper restaurantJpaMapper,
         DailyScheduleRepository dailyScheduleRepository

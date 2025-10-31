@@ -6,7 +6,6 @@ import com.eatexpress.app.dish.domain.DishAggregate.RestaurantUUID;
 import java.util.List;
 
 public interface DishPort {
-    void save(DishAggregate dishAggregate);
     DishAggregate loadById(DishUUID uuid);
     List<DishAggregate> findAllByRestaurant(RestaurantUUID restaurantUUID);
 }

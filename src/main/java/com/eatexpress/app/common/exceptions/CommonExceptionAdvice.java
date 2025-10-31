@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
 @Order(Ordered.LOWEST_PRECEDENCE)
@@ -29,6 +30,17 @@ public class CommonExceptionAdvice {
             ex,
             HttpStatus.BAD_REQUEST,
             ex.getLocalizedMessage()
+        );
+    }
+
+    @ExceptionHandler(value = { NoResourceFoundException.class })
+    private ErrorResponse handleNoResourceFoundException(
+        NoResourceFoundException ex
+    ) {
+        return ErrorResponse.create(
+            ex,
+            HttpStatus.BAD_REQUEST,
+            "Endpoint doesn't exist."
         );
     }
 

@@ -1,6 +1,5 @@
 package com.eatexpress.app.restaurant.core;
 
-import com.eatexpress.app.common.domain.Address;
 import com.eatexpress.app.common.domain.GeocodePlace;
 import com.eatexpress.app.common.exceptions.AddressUnknownException;
 import com.eatexpress.app.common.service.GeocodeService;
@@ -16,8 +15,6 @@ import com.eatexpress.app.restaurant.port.out.RestaurantFindPort;
 import java.net.MalformedURLException;
 import java.util.UUID;
 import java.util.logging.Logger;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service

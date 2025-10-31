@@ -1,6 +1,7 @@
 package com.eatexpress.app.dish.adapter.out.db;
 
 import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,10 +26,14 @@ public class DishDetailsJpaEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
 
+    @Column(nullable = false)
     private String name;
+
     private Integer menuNumber;
     private String type;
     private String description;
+
+    @Column(nullable = false, scale = 2)
     private BigDecimal price;
 
     @ElementCollection(fetch = FetchType.EAGER)

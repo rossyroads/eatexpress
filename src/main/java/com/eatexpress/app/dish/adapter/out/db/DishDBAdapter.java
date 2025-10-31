@@ -3,13 +3,14 @@ package com.eatexpress.app.dish.adapter.out.db;
 import com.eatexpress.app.dish.domain.DishAggregate;
 import com.eatexpress.app.dish.domain.DishAggregate.DishUUID;
 import com.eatexpress.app.dish.domain.DishAggregate.RestaurantUUID;
+import com.eatexpress.app.dish.port.out.CreateDishPort;
 import com.eatexpress.app.dish.port.out.DishPort;
 import java.util.List;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DishDBAdapter implements DishPort {
+public class DishDBAdapter implements CreateDishPort, DishPort {
 
     private static final Logger log = Logger.getLogger(
         DishDBAdapter.class.getName()
@@ -26,11 +27,11 @@ public class DishDBAdapter implements DishPort {
         this.dishAggregateJpaMapper = dishAggregateJpaMapper;
     }
 
-    public void save(DishAggregate dishAggregate) {
+    public DishAggregate save(DishAggregate dishAggregate) {
         log.info("Creating new dish..");
         DishAggregateJpaEntity dishAggregateJpaEntity = mapToJpa(dishAggregate);
         dishAggregateRepository.save(dishAggregateJpaEntity);
-        // }
+        return dishAggregateJpaMapper.map(dishAggregateJpaEntity);
     }
 
     public DishAggregate loadById(DishUUID uuid) {
