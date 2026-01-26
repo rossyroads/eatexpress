@@ -1,0 +1,19 @@
+meta {
+  name: DishesByRestaurant
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{url}}/api/v1/public/dish/restaurant/:restaurantId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  restaurantId: a5b3e076-863f-4f31-99ad-1cec3dbbeb0e
+}
+
+settings {
+  encodeUrl: true
+}

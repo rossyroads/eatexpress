@@ -1,0 +1,32 @@
+meta {
+  name: Lava Cake
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/api/v1/dish/new
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "restaurant": "{{restaurantId}}",
+    "isOutOfStock": true,
+    "name": "Molten Chocolate Lava Cake",
+    "menuNumber": 3,
+    "type": "DESSERT",
+    "description": "Warm chocolate cake with a gooey center, served with vanilla bean ice cream.",
+    "price": 7.0,
+    "foodTags": [
+      "vegetarian",
+      "freshly_made"
+    ],
+    "pictureUrl": "https://freefoodphotos.com/imagelibrary/confectionery/thumbs/choc_chip_muffin.jpg"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

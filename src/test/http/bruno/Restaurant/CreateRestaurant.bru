@@ -1,0 +1,76 @@
+meta {
+  name: CreateRestaurant
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/api/v1/restaurant/create
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Three Cactuses",
+    "cuisineType": "Mexican",
+    "contactEmail": "contact@3cactus.be",
+    "pictureUrl": "https://freefoodphotos.com/imagelibrary/herbs/thumbs/chilli_powder.jpg",
+    "address": {
+      "street": "Rue Brederode",
+      "houseNumber": "25",
+      "postalCode": "1000",
+      "city": "Brussels",
+      "country": "Belgium"
+    },
+    "defaultPreparationTimeMinutes": "30",
+    "openingHours": [
+      {
+        "dayOfWeek": "MONDAY",
+        "timeFrom": "09:00:00",
+        "timeTo": "17:00:00",
+        "closedAllDay": "false"
+      },
+      {
+        "dayOfWeek": "TUESDAY",
+        "timeFrom": "09:00:00",
+        "timeTo": "17:00:00",
+        "closedAllDay": "false"
+      },
+      {
+        "dayOfWeek": "WEDNESDAY",
+        "timeFrom": "09:00:00",
+        "timeTo": "17:00:00",
+        "closedAllDay": "false"
+      },
+      {
+        "dayOfWeek": "THURSDAY",
+        "timeFrom": "09:00:00",
+        "timeTo": "17:00:00",
+        "closedAllDay": "false"
+      },
+      {
+        "dayOfWeek": "FRIDAY",
+        "timeFrom": "09:00:00",
+        "timeTo": "17:00:00",
+        "closedAllDay": "false"
+      },
+      {
+        "dayOfWeek": "SATURDAY",
+        "timeFrom": "09:00:00",
+        "timeTo": "12:00:00",
+        "closedAllDay": "false"
+      },
+      {
+        "dayOfWeek": "SUNDAY",
+        "timeFrom": "00:00:00",
+        "timeTo": "00:00:00",
+        "closedAllDay": "true"
+      }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+}

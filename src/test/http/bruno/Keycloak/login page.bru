@@ -1,0 +1,21 @@
+meta {
+  name: login page
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{kc_url}}/realms/{{kc_realm}}/protocol/openid-connect/auth?response_type=code&client_id={{kc_client}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  response_type: code
+  client_id: {{kc_client}}
+  ~redirect_uri: http://localhost:5173
+}
+
+settings {
+  encodeUrl: true
+}

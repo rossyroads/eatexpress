@@ -1,0 +1,24 @@
+meta {
+  name: get token - auth code
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{kc_url}}/realms/{{kc_realm}}/protocol/openid-connect/token
+  body: formUrlEncoded
+  auth: none
+}
+
+body:form-urlencoded {
+  grant_type: authorization_code
+  code: a3428033-093c-0dac-6162-0fbb0f22f4d4.7dc7360c-2567-16b6-1e2f-ce033f4c2337.d2d63d41-6ae7-447a-8177-7d4ba9c62b89
+  code_verifier: MrMc6vqTuVqaHbxh1lpbCaYeTrdA4sGpa4DakFrntosE6C6x5FMYmMhWV5tK5Q2J79wDqC7ylFmFcNF1AXPEwP9Ddn6cYL5U
+  client_id: {{kc_client}}
+  client_secret: {{keycloak_secret}}
+  redirect_uri: http://localhost:5173/r
+}
+
+settings {
+  encodeUrl: true
+}

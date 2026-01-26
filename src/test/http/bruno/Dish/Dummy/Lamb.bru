@@ -1,0 +1,32 @@
+meta {
+  name: Lamb
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{url}}/api/v1/dish/new
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "restaurant": "{{restaurantId}}",
+    "isOutOfStock": false,
+    "name": "Lamb Tagine",
+    "menuNumber": 16,
+    "type": "MAIN_COURSE",
+    "description": "Moroccan-spiced lamb slow-cooked with apricots and almonds, served with saffron couscous.",
+    "price": 23.5,
+    "foodTags": [
+      "organic",
+      "spicy"
+    ],
+    "pictureUrl": "https://freefoodphotos.com/imagelibrary/meals/thumbs/cooked_fillet_steak.jpg"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "eatexpress",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

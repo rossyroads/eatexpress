@@ -1,0 +1,23 @@
+meta {
+  name: get token
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{kc_url}}/realms/{{kc_realm}}/protocol/openid-connect/token
+  body: formUrlEncoded
+  auth: none
+}
+
+body:form-urlencoded {
+  grant_type: password
+  username: user
+  password: user
+  client_id: {{kc_client}}
+  client_secret: {{keycloak_secret}}
+}
+
+settings {
+  encodeUrl: true
+}

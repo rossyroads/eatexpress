@@ -1,0 +1,32 @@
+meta {
+  name: Cauliflower
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{url}}/api/v1/dish/new
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "restaurant": "{{restaurantId}}",
+    "isOutOfStock": true,
+    "name": "Charred Cauliflower Bites",
+    "menuNumber": 1,
+    "type": "STARTER",
+    "description": "Smoky roasted cauliflower with a lemon-tahini drizzle and toasted sesame.",
+    "price": 8.5,
+    "foodTags": [
+      "vegan",
+      "gluten_free"
+    ],
+    "pictureUrl": "https://freefoodphotos.com/imagelibrary/vegetables/thumbs/cauliflower_floret_leaf.jpg"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

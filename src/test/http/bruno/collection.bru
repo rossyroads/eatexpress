@@ -1,0 +1,25 @@
+auth {
+  mode: oauth2
+}
+
+auth:oauth2 {
+  grant_type: password
+  access_token_url: {{kc_url}}/realms/{{kc_realm}}/protocol/openid-connect/token
+  refresh_token_url: 
+  username: user4
+  password: user
+  client_id: p6-client
+  client_secret: {{keycloak_secret}}
+  scope: openid
+  credentials_placement: basic_auth_header
+  credentials_id: credentials
+  token_placement: header
+  token_header_prefix: Bearer
+  auto_fetch_token: true
+  auto_refresh_token: false
+}
+
+vars:pre-request {
+  address: http://localhost:8081
+  restaurantId: a5b3e076-863f-4f31-99ad-1cec3dbbeb0e
+}

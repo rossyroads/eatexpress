@@ -1,0 +1,32 @@
+meta {
+  name: Sandwitch
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{url}}/api/v1/dish/new
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "restaurant": "{{restaurantId}}",
+    "isOutOfStock": false,
+    "name": "Maple-Smoked Turkey Sandwich",
+    "menuNumber": 9,
+    "type": "STARTER",
+    "description": "Maple-smoked turkey, arugula, cranberry aioli, and Swiss on toasted sourdough with house pickles.",
+    "price": 13.95,
+    "foodTags": [
+      "freshly_made",
+      "CHEF_SPECIAL"
+    ],
+    "pictureUrl": "https://freefoodphotos.com/imagelibrary/breakfast/thumbs/breakfast_egg.jpg"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

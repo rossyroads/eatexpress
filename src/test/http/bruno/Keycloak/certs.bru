@@ -1,0 +1,20 @@
+meta {
+  name: certs
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{kc_url}}/realms/{{kc_realm}}/protocol/openid-connect/certs?response_type=code&client_id={{kc_client}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  response_type: code
+  client_id: {{kc_client}}
+}
+
+settings {
+  encodeUrl: true
+}

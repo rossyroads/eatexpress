@@ -1,0 +1,19 @@
+meta {
+  name: Unpublish
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/api/v1/dish/:dishId/unpublish
+  body: none
+  auth: inherit
+}
+
+params:path {
+  dishId: 7a1086fd-e0b2-4349-a08e-acbf53a6b735
+}
+
+settings {
+  encodeUrl: true
+}

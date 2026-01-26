@@ -1,0 +1,47 @@
+meta {
+  name: CreateOrder
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{url}}/api/v1/order
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "contactInfo": {
+      "firstName": "Alex",
+      "lastName": "Morgan",
+      "email": "alex.morgan@example.com",
+      "address": {
+        "street": "5th Ave",
+        "houseNumber": "555",
+        "city": "New York",
+        "state": "NY",
+        "postalCode": "10017",
+        "country": "US"
+      }
+    },
+    "orderedDishes": [
+      {
+        "restaurantId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "dishId": "6b1e1f0e-9b5a-4d6a-8c2f-4d7f3a2b1c9e"
+      },
+      {
+        "restaurantId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "dishId": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d"
+      }
+    ],
+    "payment": {
+      "amount": 42.50,
+      "paymentStatus": "PENDING"
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+}

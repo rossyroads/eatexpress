@@ -1,0 +1,19 @@
+meta {
+  name: Publish
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/api/v1/dish/:dishId/publish
+  body: none
+  auth: inherit
+}
+
+params:path {
+  dishId: 7a1086fd-e0b2-4349-a08e-acbf53a6b735
+}
+
+settings {
+  encodeUrl: true
+}

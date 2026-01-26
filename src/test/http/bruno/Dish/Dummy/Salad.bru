@@ -1,0 +1,32 @@
+meta {
+  name: Salad
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{url}}/api/v1/dish/new
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "restaurant": "{{restaurantId}}",
+    "isOutOfStock": false,
+    "name": "Kale & Quinoa Super Salad",
+    "menuNumber": 7,
+    "type": "SALAD",
+    "description": "Massaged kale, tri-color quinoa, roasted sweet potato, toasted almonds, and citrus vinaigrette.",
+    "price": 11.0,
+    "foodTags": [
+      "gluten_free",
+      "vegan"
+    ],
+    "pictureUrl": "https://freefoodphotos.com/imagelibrary/seafood/thumbs/nicoise_salad.jpg"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

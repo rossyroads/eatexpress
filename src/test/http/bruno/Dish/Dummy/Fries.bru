@@ -1,0 +1,32 @@
+meta {
+  name: Fries
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{url}}/api/v1/dish/new
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "restaurant": "{{restaurantId}}",
+    "isOutOfStock": false,
+    "name": "Truffle Parmesan Fries",
+    "menuNumber": 4,
+    "type": "SIDE_DISH",
+    "description": "Crispy hand-cut fries tossed with truffle oil, grated parmesan, and chopped parsley.",
+    "price": 6.25,
+    "foodTags": [
+      "vegetarian",
+      "fried"
+    ],
+    "pictureUrl": "https://freefoodphotos.com/imagelibrary/vegetables/thumbs/oven_fries.jpg"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

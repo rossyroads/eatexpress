@@ -1,0 +1,32 @@
+meta {
+  name: Salmon
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/api/v1/dish/new
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "restaurant": "{{restaurantId}}",
+    "isOutOfStock": false,
+    "name": "Grilled Salmon with Herbed Quinoa",
+    "menuNumber": 2,
+    "type": "MAIN_COURSE",
+    "description": "Atlantic salmon fillet, lemon-garlic butter, served on a bed of herbed quinoa and seasonal greens.",
+    "price": 19.75,
+    "foodTags": [
+      "grilled",
+      "high_protein"
+    ],
+    "pictureUrl": "https://freefoodphotos.com/imagelibrary/seafood/thumbs/cooked_salmon.jpg"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

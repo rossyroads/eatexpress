@@ -1,0 +1,32 @@
+meta {
+  name: CreateDish
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/api/v1/dish/new
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "restaurant": "a5b3e076-863f-4f31-99ad-1cec3dbbeb0e",
+    "isOutOfStock": false,
+    "name": "Fish & Chips",
+    "menuNumber": 1,
+    "type": "MAIN_COURSE",
+    "description": "Freshly caught cod battered in bread with baked chips on the side.",
+    "price": 12.99,
+    "foodTags": [
+      "vegan",
+      "gluten_free"
+    ],
+    "pictureUrl": "https://freefoodphotos.com/imagelibrary/meals/thumbs/battered_fish.jpg"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,15 @@
+meta {
+  name: ByOwner
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/api/v1/restaurant
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
