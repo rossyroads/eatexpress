@@ -35,10 +35,10 @@ public class RabbitTopologyConfig {
         return new Queue(DISH_CREATED_QUEUE);
     }
 
-    @Bean
-    Queue dishStatusSetQueue() {
-        return new Queue(DISH_STATUS_SET_QUEUE);
-    }
+    // @Bean
+    // Queue dishStatusSetQueue() {
+    //     return new Queue(DISH_STATUS_SET_QUEUE);
+    // }
 
     @Bean
     Binding bindDishCreatedQueueToTopic(
@@ -50,15 +50,15 @@ public class RabbitTopologyConfig {
             .with("dish.create.#");
     }
 
-    @Bean
-    Binding bindDishStatusSetQueueToTopic(
-        TopicExchange eventsExchangeTopic,
-        Queue dishStatusSetQueue
-    ) {
-        return BindingBuilder.bind(dishStatusSetQueue)
-            .to(eventsExchangeTopic)
-            .with("dish.status.*");
-    }
+    // @Bean
+    // Binding bindDishStatusSetQueueToTopic(
+    //     TopicExchange eventsExchangeTopic,
+    //     Queue dishStatusSetQueue
+    // ) {
+    //     return BindingBuilder.bind(dishStatusSetQueue)
+    //         .to(eventsExchangeTopic)
+    //         .with("dish.status.*");
+    // }
 
     @Bean
     Jackson2JsonMessageConverter jackson2JsonMessageConverter() {

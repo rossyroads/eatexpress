@@ -1,0 +1,72 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+	"name": "eatexpress",
+    "dockerComposeFile": [
+		"./docker-compose.yml",
+		"../infrastructure/docker-compose.yml"
+    ],
+	"service": "eatexpress",
+    "shutdownAction": "stopCompose",
+	"workspaceFolder": "/workspace",
+	// "initializeCommand": "echo Initialize....",
+	// "overrideCommand": true
+
+	// https://containers.dev/features
+	"features": {
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "none",
+			"installMaven": "false",
+			"mavenVersion": "latest",
+			"installGradle": "true",
+			"gradleVersion": "latest"
+		},
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+	},
+
+	// "mounts": [],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [ 
+		"8081:8080"
+	],
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vmware.vscode-spring-boot",
+				"vscjava.vscode-spring-initializr",
+				"vscjava.vscode-spring-boot-dashboard",
+				"redhat.java",
+				"vscjava.vscode-java-debug",
+				"vscjava.vscode-java-test",
+				"vscjava.vscode-gradle",
+				"vscjava.vscode-java-dependency",
+				"redhat.fabric8-analytics",
+				"oderwat.indent-rainbow",
+				"yzhang.markdown-all-in-one",
+				"esbenp.prettier-vscode",
+				"chrmarti.regex",
+				"Gruntfuggly.todo-tree",
+				"redhat.vscode-xml",
+				"redhat.vscode-yaml",
+				"naco-siren.gradle-language",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"eamodio.gitlens",
+				"vscjava.vscode-java-pack",
+				"richardwillis.vscode-gradle-extension-pack",
+				"vmware.vscode-boot-dev-pack",
+				"Robinsstudio.prettier-java-formatter"
+			]
+		}
+	},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "bash /workspace/.devcontainer/postCreateCommand.sh",
+  	"postAttachCommand": "bash /workspace/.devcontainer/postAttachCommand.sh"
+}

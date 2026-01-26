@@ -1,0 +1,25 @@
+CREATE DATABASE landside;
+CREATE DATABASE warehouse;
+CREATE DATABASE waterside;
+CREATE DATABASE invoicing;
+CREATE DATABASE restaurant;
+CREATE DATABASE ordering;
+CREATE DATABASE admin;
+CREATE DATABASE context1;
+CREATE DATABASE context2;
+CREATE DATABASE context3;
+CREATE DATABASE context4;
+CREATE DATABASE context5;
+GRANT ALL ON landside.* TO 'user'@'%';
+GRANT ALL ON warehouse.* TO 'user'@'%';
+GRANT ALL ON waterside.* TO 'user'@'%';
+GRANT ALL ON invoicing.* TO 'user'@'%';
+GRANT ALL ON context1.* TO 'user'@'%';
+GRANT ALL ON context2.* TO 'user'@'%';
+GRANT ALL ON context3.* TO 'user'@'%';
+GRANT ALL ON context4.* TO 'user'@'%';
+GRANT ALL ON context5.* TO 'user'@'%';
+GRANT SHOW DATABASES ON *.* TO 'user'@'%';
+FLUSH PRIVILEGES;
+
+CREATE SCHEMA IF NOT EXISTS restaurant;

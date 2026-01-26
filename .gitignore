@@ -60,7 +60,6 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle
 
-.devcontainer
 /.vscode/*
 !/.vscode/extensions.json
 !/.vscode/settings_recommended.json
@@ -68,7 +67,6 @@ gradle-app.setting
 .temp
 bin/
 .env
-*.sh
 .mvn
 target/
 src/main_old/
