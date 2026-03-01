@@ -1,39 +1,27 @@
-EatExpress
+<h1 align="center">
+<img src="./assets/logo.jpeg" alt="EatExpress logo" width="300">
+</h1>
 
-## Install
+<h4 align="center">
+EatExpress: Fast Flavor, Delivered to Your Door
+</h4>
 
-### Keycloak
+<div align="center">
 
-#### Roles
-- Realm roles -> Create role
-  - name: restaurant-owner
-  - desc: ${role_restaurant-owner}
-- In realm roles open default-roles-my-realm. Assign realm role you've just created.
-- Refetch access token
+![version](https://img.shields.io/badge/version-1.3.1-blue)
+[![stability-beta](https://img.shields.io/badge/stability-beta-33bbff.svg)](https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md#beta)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff)](#)
+[![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?logo=rabbitmq&logoColor=fff)](#)
+[![Postgres](https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&logoColor=white)](#)
+[![Keycloak](https://img.shields.io/badge/Keycloak-4D4D4D?logo=keycloak&logoColor=white)](#)
 
----
-## Development
+</div>
 
-`nvm install`
-`npm i`
-`npm run dev`
+## About
 
-### Watch for changes & reload
+EatExpress is a food delivery application designed to connect customers with local restaurants, offering a convenient and efficient way to enjoy meals from the comfort of their homes or workplaces. The app aims to streamline the entire food ordering process while ensuring a delightful dining experience.
 
-In separate terminal run also:
-
-`npm run watch`
-
----
-## Challenges & Accomplishments
-
-Describe:
-- The most significant challenges you encountered during development.
-- The aspects of your project you are most proud of.
-
----
-
-## ✅ Finished Features
+## 🎉 Features
 
 - [x] Creating restaurants
 - [x] Limit one restaurant per account
@@ -49,9 +37,8 @@ Describe:
 - [x] Create order
 - [x] Create order without account
 - [x] And more in frontend..
----
 
-## ❌ Unfinished / Planned Features
+## 	📣 Roadmap
 
 - [ ] Add editing of dishes
 - [ ] Add scheduling applying changes of dishes
@@ -62,6 +49,27 @@ Describe:
 - [ ] Filter restaurants, dishes
 - [ ] Adjust price range criteria
 - [ ] And more in frontend..
+
+## Development
+
+`nvm install`
+`npm i`
+`npm run dev`
+
+### Watch for changes & reload
+
+In separate terminal run also:
+
+`npm run watch`
+
+## Keycloak
+
+#### Roles
+- Realm roles -> Create role
+  - name: restaurant-owner
+  - desc: ${role_restaurant-owner}
+- In realm roles open default-roles-my-realm. Assign realm role you've just created.
+- Refetch access token
 
 ## FAQ
 
